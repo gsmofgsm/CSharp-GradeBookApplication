@@ -19,7 +19,6 @@ namespace GradeBook.GradeBooks
                 throw new InvalidOperationException("5 students are needed for ranked grade");
             }
 
-            Students.Sort((x, y) => y.AverageGrade.CompareTo(x.AverageGrade));
             var grades = Students.OrderByDescending(e => e.AverageGrade)
                 .Select(e => e.AverageGrade).ToList();
 
