@@ -33,19 +33,19 @@ namespace GradeBook.GradeBooks
             }
 
             var percentage = pos / count;
-            if (percentage <= 0.20)
+            if (percentage < 0.20)
             {
                 return 'A';
             }
-            else if (percentage <= 0.40)
+            else if (percentage < 0.40)
             {
                 return 'B';
             }
-            else if (percentage <= 0.60)
+            else if (percentage < 0.60)
             {
                 return 'C';
             }
-            else if (percentage <= 0.80)
+            else if (percentage < 0.80)
             {
                 return 'D';
             }
