@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using GradeBook.Enums;
 
 namespace GradeBook.GradeBooks
@@ -15,15 +16,17 @@ namespace GradeBook.GradeBooks
             var count = Students.Count;
             if (count < 5)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("5 students are needed for ranked grade");
             }
 
             Students.Sort((x, y) => y.AverageGrade.CompareTo(x.AverageGrade));
+            var grades = Students.OrderByDescending(e => e.AverageGrade)
+                .Select(e => e.AverageGrade).ToList();
 
             int pos = 0;
             for (var i = 0; i < count; i++)
             {
-                if (Students[i].AverageGrade < averageGrade)
+                if (grades[i] == averageGrade)
                 {
                     pos = i;
                     break;
