@@ -22,33 +22,15 @@ namespace GradeBook.GradeBooks
             var grades = Students.OrderByDescending(e => e.AverageGrade)
                 .Select(e => e.AverageGrade).ToList();
 
-            int pos = 0;
-            for (var i = 0; i < count; i++)
-            {
-                if (grades[i] == averageGrade)
-                {
-                    pos = i;
-                    break;
-                }
-            }
-
-            var percentage = pos / count;
-            if (percentage < 0.20)
-            {
+            var threshold = (int)Math.Ceiling(Students.Count * 0.2);
+            if (averageGrade >= grades[threshold - 1])
                 return 'A';
-            }
-            else if (percentage < 0.40)
-            {
+            if (averageGrade >= grades[(threshold * 2) - 1])
                 return 'B';
-            }
-            else if (percentage < 0.60)
-            {
+            if (averageGrade >= grades[(threshold * 3) - 1])
                 return 'C';
-            }
-            else if (percentage < 0.80)
-            {
+            if (averageGrade >= grades[(threshold * 4) - 1])
                 return 'D';
-            }
             return 'F';
         }
     }
